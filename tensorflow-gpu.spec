@@ -1,5 +1,5 @@
 Name:           tensorflow-gpu
-Version:		%{VERSION}
+Version:	%{VERSION}
 Release:        %{RELEASE}%{?dist}
 Summary:        An Open Source Machine Learning Framework for Everyone 
 License:        Apache 2
@@ -30,8 +30,8 @@ This package contains the development headers for %{name}.
 
 %build
 bazel clean
-bazel build --crosstool_top=@local_config_cuda//crosstool:toolchain --define=using_cuda=true --define=using_cuda_nvcc=true --action_env=TF_NEED_CUDA="1" --action_env=CUDA_TOOLKIT_PATH="/usr/local/cuda" --action_env=TF_CUDA_VERSION="10.0" --action_env=CUDNN_INSTALL_PATH="/usr/lib64" --action_env=TF_CUDNN_VERSION="7" --action_env=TF_CUDA_COMPUTE_CAPABILITIES="5.2" --define=grpc_no_ares=true --copt=-mavx2 //tensorflow:libtensorflow.so
-bazel build --crosstool_top=@local_config_cuda//crosstool:toolchain --define=using_cuda=true --define=using_cuda_nvcc=true --action_env=TF_NEED_CUDA="1" --action_env=CUDA_TOOLKIT_PATH="/usr/local/cuda" --action_env=TF_CUDA_VERSION="10.0" --action_env=CUDNN_INSTALL_PATH="/usr/lib64" --action_env=TF_CUDNN_VERSION="7" --action_env=TF_CUDA_COMPUTE_CAPABILITIES="5.2" --define=grpc_no_ares=true --copt=-mavx2 //tensorflow:libtensorflow_cc.so
+bazel build --crosstool_top=@local_config_cuda//crosstool:toolchain --define=using_cuda=true --define=using_cuda_nvcc=true --action_env=TF_NEED_CUDA="1" --action_env=CUDA_TOOLKIT_PATH="/usr/local/cuda" --action_env=TF_CUDA_VERSION="10.0" --action_env=CUDNN_INSTALL_PATH="/usr/lib64" --action_env=TF_CUDNN_VERSION="7" --action_env=TF_CUDA_COMPUTE_CAPABILITIES="5.2" --define=grpc_no_ares=true --copt=-mavx2 --copt=-O2 //tensorflow:libtensorflow.so
+bazel build --crosstool_top=@local_config_cuda//crosstool:toolchain --define=using_cuda=true --define=using_cuda_nvcc=true --action_env=TF_NEED_CUDA="1" --action_env=CUDA_TOOLKIT_PATH="/usr/local/cuda" --action_env=TF_CUDA_VERSION="10.0" --action_env=CUDNN_INSTALL_PATH="/usr/lib64" --action_env=TF_CUDNN_VERSION="7" --action_env=TF_CUDA_COMPUTE_CAPABILITIES="5.2" --define=grpc_no_ares=true --copt=-mavx2 --copt=-O2 //tensorflow:libtensorflow_cc.so
 
 %install
 rm -rf $RPM_BUILD_ROOT
