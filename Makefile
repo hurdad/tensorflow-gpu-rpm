@@ -1,5 +1,5 @@
 # tensorflow-gpu
-version = 1.14.0
+version = 2.0.0
 release = 1
 name = tensorflow
 full_name = $(name)-$(version)
